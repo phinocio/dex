@@ -1,9 +1,15 @@
 <script setup lang="ts">
 import CreateDexDialog from '@/components/Dialogs/CreateDexDialog.vue';
+import type { Dex } from '@/types/Dex';
 import { PhPlus } from '@phosphor-icons/vue';
 import { ref } from 'vue';
 
 const dialog = ref<InstanceType<typeof CreateDexDialog>>();
+
+let dexes: Dex[] = [
+	{ name: 'my dex', game: 'blue' },
+	{ name: 'my other dex', game: 'red' },
+];
 </script>
 
 <template>
@@ -24,6 +30,6 @@ const dialog = ref<InstanceType<typeof CreateDexDialog>>();
 
 	<!-- TODO: Extract this to a specific "CreateDexModal" component -->
 	<Teleport to="body">
-		<CreateDexDialog ref="dialog" />
+		<CreateDexDialog ref="dialog" :dex="dexes" />
 	</Teleport>
 </template>
