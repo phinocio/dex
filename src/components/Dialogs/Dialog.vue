@@ -19,7 +19,7 @@ watch(
 <template>
 	<dialog
 		ref="dialog"
-		class="bg-light dark:bg-dark text-text-light dark:text-text-dark fixed inset-0 left-0 top-0 w-full max-w-[80%] space-y-4 rounded-xl border border-blue-500 p-4 shadow-xl backdrop:bg-black backdrop:opacity-50"
+		class="fixed inset-0 left-0 top-0 w-full max-w-[40%] space-y-4 rounded-xl border border-blue-500 bg-light p-4 text-text-light shadow-xl backdrop:bg-black backdrop:opacity-50 dark:bg-dark dark:text-text-dark"
 	>
 		<header class="border-b-2 border-blue-500 py-2">
 			<h1 class="text-2xl font-bold">{{ title }}</h1>
