@@ -1,12 +1,23 @@
 import { defineStore } from 'pinia';
 import { useLocalStorage } from '@vueuse/core';
 import type { Dex } from '@/types/Dex';
+import getSprite from '@/lib/utils/getSprite';
 
 export const useDexStore = defineStore('dexStore', () => {
 	const dexes = useLocalStorage<Map<string, Dex>>('dexes', new Map());
 
 	function addDex(dex: Dex): void {
-		dexes.value.set(crypto.randomUUID(), structuredClone(dex));
+		dex.pokemon = [
+			{
+				id: 1,
+				name: 'bulbasaur',
+				caught: false,
+				needsEvolution: false,
+				sprite: getSprite(dex.spriteType, 1),
+			},
+		];
+
+		dexes.value.set(crypto.randomUUID(), dex);
 	}
 
 	function getDex(id: string): Dex | undefined {

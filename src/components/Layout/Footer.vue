@@ -13,7 +13,7 @@
 				<p class="flex justify-center space-x-2">
 					<a
 						class="hover:text-blue-600 dark:hover:text-blue-400"
-						href="https://patreon.com/phinocio"
+						href="https://bsky.app/profile/phinoc.io"
 						rel="noreferrer noopener"
 						target="_blank"
 						>BlueSky</a

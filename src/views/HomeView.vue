@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import CreateDexDialog from '@/components/Dialogs/CreateDexDialog.vue';
-import { PhPlus, PhTrash, PhPencil } from '@phosphor-icons/vue';
+import { PhPlus } from '@phosphor-icons/vue';
 import { ref } from 'vue';
 import { useDexStore } from '@/stores/DexStore';
+import Dexes from '@/components/Dexes.vue';
 
 let dexStore = useDexStore();
 
@@ -28,24 +29,7 @@ const dialog = ref<InstanceType<typeof CreateDexDialog>>();
 	</section>
 
 	<article v-else class="grid grid-cols-3 gap-10">
-		<section
-			v-for="[id, dex] in dexStore.dexes.entries()"
-			:key="id"
-			class="rounded-xl border border-blue-500 bg-light p-4 text-text-light shadow-xl dark:bg-dark dark:text-text-dark"
-		>
-			<header class="flex items-center justify-between">
-				<h2 class="text-2xl font-bold">{{ dex.name }}</h2>
-				<span class="space-x-2">
-					<button class="font-bold text-blue-400" @click="dexStore.deleteDex(id)">
-						<PhPencil :size="24" />
-					</button>
-					<button class="font-bold text-pink-500" @click="dexStore.deleteDex(id)">
-						<PhTrash :size="24" />
-					</button>
-				</span>
-			</header>
-			<p>{{ dex.game }}</p>
-		</section>
+		<Dexes />
 	</article>
 
 	<Teleport to="body">
