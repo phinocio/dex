@@ -1,21 +1,24 @@
 <script setup lang="ts">
 import { PhGameController } from '@phosphor-icons/vue';
 import { ref } from 'vue';
-import Generations from '@/stores/Generations';
+import Generations from '@/stores/GenerationStore';
 import Dialog from '@/components/Dialogs/Dialog.vue';
 import { useDialog } from '@/composables/useDialog';
-import type { Dex } from '@/types/Dex';
+import { useDexStore } from '@/stores/DexStore';
 
 const selectedGame = ref('');
 
 const { show, close } = useDialog('#create-dex-dialog');
 
-defineProps<{ dex: Dex[] }>();
+const dexStore = useDexStore();
+
+console.log(dexStore.dexes);
+
 defineExpose({ show, close });
 </script>
 <template>
 	<Dialog title="Create Dex" id="create-dex-dialog">
-		<p class="mb-4">You currently have {{ dex?.length }} dexes.</p>
+		<p class="mb-4">You currently have {{ dexStore.dexes?.length }} dexes.</p>
 		<label class="relative block">
 			<PhGameController
 				class="pointer-events-none absolute left-4 top-1/2 h-6 w-6 -translate-y-1/2 transform text-blue-500"
@@ -35,5 +38,6 @@ defineExpose({ show, close });
 
 		<br />
 		You selected {{ selectedGame || 'none' }}
+		<button @click="dexStore.addDex('meow', selectedGame)">Create</button>
 	</Dialog>
 </template>
