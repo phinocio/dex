@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PhGameController } from '@phosphor-icons/vue';
 import { ref } from 'vue';
-import Generations from '@/data/Generations';
+import Generations from '@/stores/Generations';
 import Dialog from '@/components/Dialogs/Dialog.vue';
 import { useDialog } from '@/composables/useDialog';
 import type { Dex } from '@/types/Dex';
