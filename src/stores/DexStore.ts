@@ -5,8 +5,8 @@ import type { Dex } from '@/types/Dex';
 export const useDexStore = defineStore('dexStore', () => {
 	const dexes = useLocalStorage<Map<string, Dex>>('dexes', new Map());
 
-	function addDex(name: string, game: string): void {
-		dexes.value.set(crypto.randomUUID(), { name, game });
+	function addDex(dex: Dex): void {
+		dexes.value.set(crypto.randomUUID(), structuredClone(dex));
 	}
 
 	function getDex(id: string): Dex | undefined {

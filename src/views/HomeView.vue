@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import CreateDexDialog from '@/components/Dialogs/CreateDexDialog.vue';
-import type { Dex } from '@/types/Dex';
-import { PhPlus } from '@phosphor-icons/vue';
+import { PhPlus, PhTrash, PhPencil } from '@phosphor-icons/vue';
 import { ref } from 'vue';
 import { useDexStore } from '@/stores/DexStore';
 
@@ -11,7 +10,7 @@ const dialog = ref<InstanceType<typeof CreateDexDialog>>();
 </script>
 
 <template>
-	<header class="mb-6 flex items-center justify-between">
+	<header class="mb-12 flex items-center justify-between">
 		<h1 class="text-2xl font-bold">
 			Your Dexes <small class="text-md">({{ dexStore.dexes.size }})</small>
 		</h1>
@@ -28,18 +27,26 @@ const dialog = ref<InstanceType<typeof CreateDexDialog>>();
 		<button class="font-bold text-pink-500" @click="$refs.dialog?.show()">Why not create one.</button>
 	</section>
 
-	<section v-else>
-		<div
+	<article v-else class="grid grid-cols-3 gap-10">
+		<section
 			v-for="[id, dex] in dexStore.dexes.entries()"
 			:key="id"
-			class="mb-4 rounded-xl border border-blue-500 bg-light p-4 text-text-light shadow-xl dark:bg-dark dark:text-text-dark"
+			class="rounded-xl border border-blue-500 bg-light p-4 text-text-light shadow-xl dark:bg-dark dark:text-text-dark"
 		>
-			<h2 class="text-2xl font-bold">{{ dex.name }}</h2>
+			<header class="flex items-center justify-between">
+				<h2 class="text-2xl font-bold">{{ dex.name }}</h2>
+				<span class="space-x-2">
+					<button class="font-bold text-blue-400" @click="dexStore.deleteDex(id)">
+						<PhPencil :size="24" />
+					</button>
+					<button class="font-bold text-pink-500" @click="dexStore.deleteDex(id)">
+						<PhTrash :size="24" />
+					</button>
+				</span>
+			</header>
 			<p>{{ dex.game }}</p>
-
-			<button class="font-bold text-pink-500" @click="dexStore.deleteDex(id)">Delete</button>
-		</div>
-	</section>
+		</section>
+	</article>
 
 	<Teleport to="body">
 		<CreateDexDialog ref="dialog" />
