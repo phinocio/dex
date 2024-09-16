@@ -2,20 +2,34 @@ import { defineStore } from 'pinia';
 import { useLocalStorage } from '@vueuse/core';
 import type { Dex } from '@/types/Dex';
 import getSprite from '@/lib/utils/getSprite';
+import { usePokeApi } from '@/composables/usePokeApi';
+
+const pokeApi = usePokeApi();
 
 export const useDexStore = defineStore('dexStore', () => {
 	const dexes = useLocalStorage<Map<string, Dex>>('dexes', new Map());
 
-	function addDex(dex: Dex): void {
-		dex.pokemon = [
-			{
-				id: 1,
-				name: 'bulbasaur',
+	async function addDex(dex: Dex): Promise<void> {
+		// Determine generation and if it's national/regional/generation dex
+		const generation = await pokeApi.getGenerationFromGame(dex.game);
+
+		//if (dex.type === 'generation') {
+		const dexPokemon = await pokeApi.getGenerationDex(generation);
+		console.log(dexPokemon.pokemon_species);
+		//}
+
+		// Populate the dex with mons
+		dex.pokemon = [];
+		for (const pokemon of dexPokemon) {
+			const pokemonData = await pokeApi.getPokemon(pokemon.name);
+			dex.pokemon.push({
+				id: pokemonData.id,
+				name: pokemonData.name,
 				caught: false,
 				needsEvolution: false,
-				sprite: getSprite(dex.spriteType, 1),
-			},
-		];
+				sprite: getSprite(dex.spriteType, pokemonData.id),
+			});
+		}
 
 		dexes.value.set(crypto.randomUUID(), dex);
 	}
@@ -24,9 +38,13 @@ export const useDexStore = defineStore('dexStore', () => {
 		return dexes.value.get(id);
 	}
 
+	function updateDex(id: string, dex: Dex): void {
+		dexes.value.set(id, dex);
+	}
+
 	function deleteDex(id: string): void {
 		dexes.value.delete(id);
 	}
 
-	return { dexes, addDex, deleteDex, getDex };
+	return { dexes, addDex, deleteDex, getDex, updateDex };
 });

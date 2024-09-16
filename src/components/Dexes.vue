@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { PhPencil, PhTrash } from '@phosphor-icons/vue';
 import { useDexStore } from '@/stores/DexStore';
+import { RouterLink } from 'vue-router';
 
 const dexStore = useDexStore();
 </script>
@@ -14,8 +15,10 @@ const dexStore = useDexStore();
 		<header class="flex items-center justify-between">
 			<h2 class="text-2xl font-bold">{{ dex.name }}</h2>
 			<span class="space-x-2">
-				<button class="font-bold text-blue-400" @click="dexStore.deleteDex(id)">
-					<PhPencil :size="24" />
+				<button class="font-bold text-blue-400">
+					<RouterLink :to="`/dexes/${id}`">
+						<PhPencil :size="24" />
+					</RouterLink>
 				</button>
 				<button class="font-bold text-pink-500" @click="dexStore.deleteDex(id)">
 					<PhTrash :size="24" />

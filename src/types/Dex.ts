@@ -5,7 +5,7 @@ import type { Generation } from '@/types/Generation';
 export type Dex = {
 	name: string;
 	game: string;
-	dexType: 'national' | 'regional' | 'generation';
+	type: 'national' | 'regional' | 'generation';
 	generation?: Generation;
 	shinyDex: boolean;
 	spriteType: SpriteType;

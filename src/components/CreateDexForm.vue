@@ -12,7 +12,7 @@ const dexStore = useDexStore();
 const initialData = {
 	name: '',
 	game: '',
-	dexType: 'national' as const,
+	type: 'national' as const,
 	shinyDex: false,
 	spriteType: {
 		generation: 'generation-i',

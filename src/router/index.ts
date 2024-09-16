@@ -1,20 +1,22 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import HomeView from '@/views/HomeView.vue';
-import NotFound from '@/views/errors/NotFound.vue';
-
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
 	routes: [
 		{
 			path: '/',
 			name: 'home',
-			component: HomeView,
+			component: () => import('@/views/HomeView.vue'),
+		},
+		{
+			path: '/dexes/:id',
+			name: 'Dex',
+			component: () => import('@/views/DexView.vue'),
 		},
 		{
 			path: '/:catchAll(.*)*',
 			name: 'Not Found',
-			component: NotFound,
+			component: () => import('@/views/errors/NotFound.vue'),
 		},
 	],
 });
