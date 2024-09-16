@@ -41,7 +41,7 @@ const getBoxName = computed(() => {
 			<p class="rounded-full bg-pink-500 px-4 py-2">{{ dex?.type }}</p>
 		</div>
 	</header>
-	<div class="grid grid-cols-2 gap-10">
+	<div class="grid grid-cols-1 gap-10 md:grid-cols-2">
 		<article v-for="(box, index) in boxes" class="rounded-t-xl border border-border-light dark:border-border-dark">
 			<header class="flex items-center justify-between p-4">
 				<h2 class="text-2xl font-bold">
@@ -63,7 +63,7 @@ const getBoxName = computed(() => {
 					Unmark All
 				</button>
 			</header>
-			<section class="grid grid-cols-6">
+			<section class="grid grid-cols-1 md:grid-cols-6">
 				<div
 					v-for="pokemon in box"
 					:key="pokemon.id"
@@ -71,7 +71,7 @@ const getBoxName = computed(() => {
 					:class="{ 'bg-green-500 text-white': pokemon.caught }"
 				>
 					<div
-						class="flex h-32 w-32 flex-col items-center justify-center"
+						class="flex items-center justify-between p-4 md:h-32 md:w-32 md:flex-col md:justify-center"
 						@click="pokemon.caught = !pokemon.caught"
 					>
 						<p class="text-sm font-bold capitalize">#{{ pokemon.id.toString().padStart(3, '0') }}</p>
