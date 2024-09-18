@@ -3,6 +3,7 @@ import { useLocalStorage } from '@vueuse/core';
 import type { Dex } from '@/types/Dex';
 import getSprite from '@/lib/utils/getSprite';
 import { usePokeApi } from '@/composables/usePokeApi';
+import type { Pokemon } from '@/types/Pokemon';
 
 const pokeApi = usePokeApi();
 
@@ -19,17 +20,18 @@ export const useDexStore = defineStore('dexStore', () => {
 		//}
 
 		// Populate the dex with mons
-		dex.pokemon = [];
-		for (const pokemon of dexPokemon) {
-			const pokemonData = await pokeApi.getPokemon(pokemon.name);
-			dex.pokemon.push({
-				id: pokemonData.id,
-				name: pokemonData.name,
-				caught: false,
-				needsEvolution: false,
-				sprite: getSprite(dex.spriteType, pokemonData.id),
-			});
-		}
+		dex.pokemon = await Promise.all(
+			dexPokemon.map(async (pokemon: Pokemon) => {
+				const pokemonData = await pokeApi.getPokemon(pokemon.name);
+				return {
+					id: pokemonData.id,
+					name: pokemonData.name,
+					caught: false,
+					needsEvolution: false,
+					sprite: getSprite(dex.spriteType, pokemonData.id),
+				};
+			}),
+		);
 
 		dexes.value.set(crypto.randomUUID(), dex);
 	}
