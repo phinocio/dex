@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { PhGameController, PhIdentificationBadge, PhImage, PhSparkle } from '@phosphor-icons/vue';
-import { reactive } from 'vue';
-import Generations from '@/stores/GenerationStore';
 import { useDexStore } from '@/stores/DexStore';
+import Generations from '@/stores/GenerationStore';
 import SpriteTypes from '@/stores/SpriteTypeStore';
 import type { Dex } from '@/types/Dex';
 import type { SpriteType } from '@/types/SpriteType';
+import { PhGameController, PhIdentificationBadge, PhImage, PhSparkle } from '@phosphor-icons/vue';
+import { reactive } from 'vue';
 
 const dexStore = useDexStore();
 
@@ -62,8 +62,8 @@ defineProps<{
 				>
 					<option value="">--Select a Game--</option>
 					<hr />
-					<optgroup v-for="generation in Generations" :label="generation.name">
-						<option v-for="game in generation.games">{{ game.title }}</option>
+					<optgroup v-for="generation in Generations" :label="generation.name" :key="generation.name">
+						<option v-for="game in generation.games" :key="game.title">{{ game.title }}</option>
 					</optgroup>
 				</select>
 			</label>
@@ -80,7 +80,9 @@ defineProps<{
 					v-model="form.spriteType"
 					class="w-full appearance-none rounded-full border border-border-light bg-gray-200 px-4 py-3 pl-14 focus:outline-none focus:ring-1 focus:ring-blue-500 dark:border-border-dark dark:bg-[#26263a]"
 				>
-					<option v-for="spriteType in SpriteTypes" :value="spriteType">{{ spriteType.game }}</option>
+					<option v-for="spriteType in SpriteTypes" :value="spriteType" :key="spriteType.game">
+						{{ spriteType.game }}
+					</option>
 				</select>
 			</label>
 		</div>
