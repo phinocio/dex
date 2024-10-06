@@ -42,7 +42,11 @@ const getBoxName = computed(() => {
 		</div>
 	</header>
 	<div class="grid grid-cols-1 gap-10 md:grid-cols-2">
-		<article v-for="(box, index) in boxes" class="rounded-t-xl border border-border-light dark:border-border-dark">
+		<article
+			v-for="(box, index) in boxes"
+			:key="index"
+			class="rounded-t-xl border border-border-light dark:border-border-dark"
+		>
 			<header class="flex items-center justify-between p-4">
 				<h2 class="text-2xl font-bold">
 					{{ getBoxName(index) }}

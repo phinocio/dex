@@ -20,18 +20,24 @@ export const useDexStore = defineStore('dexStore', () => {
 		//}
 
 		// Populate the dex with mons
-		dex.pokemon = await Promise.all(
-			dexPokemon.map(async (pokemon: Pokemon) => {
-				const pokemonData = await pokeApi.getPokemon(pokemon.name);
-				return {
-					id: pokemonData.id,
-					name: pokemonData.name,
-					caught: false,
-					needsEvolution: false,
-					sprite: getSprite(dex.spriteType, pokemonData.id),
-				};
-			}),
-		);
+		dex.pokemon = (
+			await Promise.all(
+				dexPokemon.map(
+					async (
+						pokemon: Pokemon,
+					): Promise<{ id: any; name: any; caught: boolean; needsEvolution: boolean; sprite: string }> => {
+						const pokemonData = await pokeApi.getPokemon(pokemon.name);
+						return {
+							id: pokemonData.id,
+							name: pokemonData.name,
+							caught: false,
+							needsEvolution: false,
+							sprite: getSprite(dex.spriteType, pokemonData.id),
+						};
+					},
+				),
+			)
+		).sort((a: Pokemon, b: Pokemon): number => a.id - b.id);
 
 		dexes.value.set(crypto.randomUUID(), dex);
 	}
