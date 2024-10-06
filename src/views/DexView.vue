@@ -11,7 +11,7 @@ const dex = dexStore.getDex(route.params.id as string);
 const boxSize = 30;
 
 const boxes = computed(() => {
-	return dex?.pokemon?.reduce((resultArray, item, index) => {
+	return dex?.pokemon?.reduce((resultArray: Array<Array<Pokemon>>, item: Pokemon, index: number) => {
 		const chunkIndex = Math.floor(index / boxSize);
 		if (!resultArray[chunkIndex]) {
 			resultArray[chunkIndex] = [];
