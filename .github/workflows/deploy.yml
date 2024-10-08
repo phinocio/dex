@@ -47,6 +47,8 @@ jobs:
               run: CI=true pnpm i
             - name: Build
               run: pnpm run build
+            - name: Copy index to 404
+              run: cp ./dist/index.html ./dist/404.html
             - name: Setup Pages
               uses: actions/configure-pages@v4
             - name: Upload artifact
