@@ -1,19 +1,24 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-	future: {
-		compatibilityVersion: 4,
+	app: {
+		head: {
+			titleTemplate: '%s | phinocio/dex',
+		},
 	},
+	compatibilityDate: '2024-04-03',
 	components: [
 		{
 			path: '~/components',
 			pathPrefix: false,
 		},
 	],
+	devtools: { enabled: true },
+	future: {
+		compatibilityVersion: 4,
+	},
 	imports: {
 		dirs: ['types', 'types/api'],
 	},
-	compatibilityDate: '2024-04-03',
-	devtools: { enabled: true },
 	modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@pinia/nuxt'],
 	tailwindcss: {
 		config: {
