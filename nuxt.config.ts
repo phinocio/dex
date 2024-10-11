@@ -12,7 +12,13 @@ export default defineNuxtConfig({
 			pathPrefix: false,
 		},
 	],
-	devtools: { enabled: true },
+	devtools: {
+		enabled: true,
+
+		timeline: {
+			enabled: true,
+		},
+	},
 	future: {
 		compatibilityVersion: 4,
 	},
@@ -41,3 +47,4 @@ export default defineNuxtConfig({
 		},
 	},
 });
+

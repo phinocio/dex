@@ -1,6 +1,8 @@
 <template>
 	<footer class="border-t-2 border-blue-500 bg-[#dce0e8] dark:bg-[#11111b]">
-		<div class="container mx-auto flex flex-col items-center justify-between py-4 text-center text-sm md:flex-row">
+		<div
+			class="container mx-auto flex flex-col items-center justify-between px-6 py-4 text-center text-sm md:flex-row"
+		>
 			<section class="space-y-2">
 				<p class="font-bold text-blue-600 dark:text-blue-400">phinocio/dex</p>
 				<p>

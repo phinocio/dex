@@ -1,17 +1,19 @@
 <script setup lang="ts">
+useHead({
+	title: 'Home',
+});
+
 const {
 	data: dex,
 	status,
 	error,
-} = await useLazyAsyncData<ApiGameDex>('rby-national', () =>
-	$fetch('http://localhost:8000/v1/game-dexes/rby-national?include=pokemon'),
-);
+} = await useFetch<{ data: ApiGameDex }>('http://localhost:8000/v1/game-dexes/rby-national?include=pokemon');
 </script>
 
 <template>
 	<div>
 		<header class="mb-12 flex items-center justify-between">
-			<h1 class="text-2xl font-bold">Meow</h1>
+			<h1 class="text-2xl font-bold">Your Dexes <small class="font-normal">(0)</small></h1>
 			<button
 				class="hover:shadow-dark flex items-center rounded-xl border border-pink-500 px-4 py-2 font-bold text-pink-500 hover:bg-pink-500 hover:text-white"
 				@click="$router.push('/dexes/create')"
