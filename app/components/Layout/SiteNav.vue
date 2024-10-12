@@ -38,7 +38,7 @@ const isActivePage = (routePath: string) => {
 	>
 		<div class="flex h-full">
 			<div class="flex h-full w-64 flex-col bg-[#dce0e8] lg:w-full dark:bg-[#11111b]">
-				<header class="border-b border-blue-500 py-4 text-center text-2xl font-bold text-red-500">
+				<header class="border-b border-blue-500 py-4 text-center text-2xl font-bold text-pink-500">
 					<NuxtLink to="/" class="px-8 py-4"> phinocio/dex</NuxtLink>
 				</header>
 				<nav class="mt-4 flex-grow">
@@ -47,7 +47,7 @@ const isActivePage = (routePath: string) => {
 							<NuxtLink
 								:class="[
 									isActivePage(link.path) ? 'bg-blue-500 text-white' : '',
-									'flex rounded-xl px-3 py-2 hover:bg-red-500 hover:text-white active:bg-red-500 active:text-white',
+									'flex rounded-xl px-3 py-2 hover:bg-pink-500 hover:text-white active:bg-pink-500 active:text-white',
 								]"
 								:to="link.path"
 								@click="$emit('nav-close')"
@@ -64,7 +64,7 @@ const isActivePage = (routePath: string) => {
 							<NuxtLink
 								:class="[
 									isActivePage(link.path) ? 'bg-blue-500 text-white' : '',
-									'flex rounded-xl px-3 py-2 hover:bg-red-500 hover:text-white active:bg-red-500 active:text-white',
+									'flex rounded-xl px-3 py-2 hover:bg-pink-500 hover:text-white active:bg-pink-500 active:text-white',
 								]"
 								:to="link.path"
 								@click="$emit('nav-close')"
