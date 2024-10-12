@@ -2,7 +2,7 @@ export type ApiGameDex = {
 	name: string;
 	slug: string;
 	type: string;
-	game?: ApiGame[];
+	games?: ApiGame[];
 	pokemon?: Pokemon[];
 	links: {
 		self: string;
