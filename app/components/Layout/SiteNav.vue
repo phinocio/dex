@@ -14,21 +14,6 @@ const navLinks = ref([
 		path: '/dexes',
 		icon: 'ph:notebook',
 	},
-	{
-		name: 'Available Dexes',
-		path: '/available-dexes',
-		icon: 'ph:notebook',
-	},
-	{
-		name: 'Games',
-		path: '/games',
-		icon: 'ph:game-controller',
-	},
-	{
-		name: 'Pokemon',
-		path: '/pokemon',
-		icon: 'ph:cat',
-	},
 ]);
 
 const footerLinks = ref([
