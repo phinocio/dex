@@ -1,8 +1,8 @@
 <script setup lang="ts">
 useSeoMeta({
-	title: 'Your Dexes',
+	title: 'Available Dexes',
 });
 </script>
 <template>
-	<div>A</div>
+	<div>Meow</div>
 </template>

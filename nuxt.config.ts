@@ -26,6 +26,11 @@ export default defineNuxtConfig({
 		dirs: ['types', 'types/api'],
 	},
 	modules: ['@nuxtjs/tailwindcss', '@vueuse/nuxt', '@nuxt/eslint', '@nuxt/fonts', '@nuxt/icon', '@pinia/nuxt'],
+	runtimeConfig: {
+		public: {
+			apiBase: process.env.BASE_URL || 'https://api.dex.phinoc.io',
+		},
+	},
 	tailwindcss: {
 		config: {
 			theme: {
@@ -47,4 +52,3 @@ export default defineNuxtConfig({
 		},
 	},
 });
-

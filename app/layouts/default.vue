@@ -7,7 +7,7 @@ const open = ref(false);
 			<div class="flex h-dvh w-full justify-between">
 				<SiteNav :open="open" @nav-close="open = false" />
 
-				<div class="flex flex-grow flex-col md:p-0 lg:mt-16">
+				<div class="flex flex-grow flex-col md:p-0 lg:ml-64 lg:mt-16">
 					<header
 						class="flex items-center justify-between border-b border-blue-500 px-8 py-4 text-center text-2xl font-bold text-red-500 lg:hidden"
 					>
@@ -17,7 +17,7 @@ const open = ref(false);
 							<Icon name="ph:list" :size="24" />
 						</button>
 					</header>
-					<main class="flex-grow px-8 py-4 lg:mx-64">
+					<main class="flex-grow px-8 py-4 xl:mr-64">
 						<slot />
 					</main>
 					<SiteFooter />

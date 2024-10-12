@@ -19,6 +19,16 @@ const navLinks = ref([
 		path: '/available-dexes',
 		icon: 'ph:notebook',
 	},
+	{
+		name: 'Games',
+		path: '/games',
+		icon: 'ph:game-controller',
+	},
+	{
+		name: 'Pokemon',
+		path: '/pokemon',
+		icon: 'ph:cat',
+	},
 ]);
 
 const footerLinks = ref([
@@ -55,6 +65,7 @@ const isActivePage = (routePath: string) => {
 									'flex rounded-xl px-3 py-2 hover:bg-red-500 hover:text-white active:bg-red-500 active:text-white',
 								]"
 								:to="link.path"
+								@click="$emit('nav-close')"
 							>
 								<Icon :name="link.icon" :size="24" class="mr-2 inline" />
 								<span>{{ link.name }}</span>
@@ -71,6 +82,7 @@ const isActivePage = (routePath: string) => {
 									'flex rounded-xl px-3 py-2 hover:bg-red-500 hover:text-white active:bg-red-500 active:text-white',
 								]"
 								:to="link.path"
+								@click="$emit('nav-close')"
 							>
 								<Icon :name="link.icon" :size="24" class="mr-2 inline" />
 								<span>{{ link.name }}</span>
@@ -79,7 +91,7 @@ const isActivePage = (routePath: string) => {
 					</ul>
 				</footer>
 			</div>
-			<button class="inline-block h-full flex-grow bg-black/50" @click="$emit('nav-close')" />
+			<button class="inline-block h-full flex-grow bg-black/50 lg:hidden" @click="$emit('nav-close')" />
 		</div>
 	</div>
 </template>
